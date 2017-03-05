@@ -4,14 +4,17 @@ A lightweight library for 'break' and 'continue' in Scala for-comprehensions
 ### Use `breakable` in your project
 [![Download](https://api.bintray.com/packages/manyangled/maven/breakable/images/download.svg?version=0.1.0) ](https://bintray.com/manyangled/maven/breakable/0.1.0/link)
 
+##### SBT
 ```scala
 resolvers += "manyangled" at "https://dl.bintray.com/manyangled/maven/"
 
 libraryDependencies += "com.manyangled" %% "breakable" % "0.1.0"
 ```
 
-### Examples
+##### API Doc
+https://erikerlandson.github.io/breakable/latest/api/#package
 
+### Examples
 The `breakable` library implements the `break` and `continue` operators on Scala sequences in `for` comprehensions.  The result of a `for` comprehension over "breakable sequences" can be returned as a variety of standard Scala sequences:
 ```scala
 scala> import com.manyangled.breakable._
