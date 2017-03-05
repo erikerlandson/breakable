@@ -33,10 +33,13 @@ package object breakable {
     }
   }
 
-  implicit class ImplicitForSequenceResults[A](bkb: Breakable[A]) {
+  implicit class ImplicitForSequenceResults[A :scala.reflect.ClassTag](bkb: Breakable[A]) {
     def toStream: Stream[A] = bkb.rawStream.map(_.get).asInstanceOf[Stream[A]]
     def toIterator: Iterator[A] = toStream.iterator
     def toVector: Vector[A] = toStream.toVector
+    def toList: List[A] = toStream.toList
+    def toArray: Array[A] = toStream.toArray
+    def toSeq: Seq[A] = toStream.toSeq
   }
 
   def breakable[A](s: => Seq[A]): Breakable[(A, Label)] = Breakable(s)
