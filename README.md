@@ -2,13 +2,13 @@
 A lightweight library for 'break' and 'continue' in Scala for-comprehensions
 
 ### Use `breakable` in your project
-[![Download](https://api.bintray.com/packages/manyangled/maven/breakable/images/download.svg?version=0.1.0) ](https://bintray.com/manyangled/maven/breakable/0.1.0/link)
+[![Download](https://api.bintray.com/packages/manyangled/maven/breakable/images/download.svg?version=0.1.1) ](https://bintray.com/manyangled/maven/breakable/0.1.1/link)
 
 ##### SBT
 ```scala
 resolvers += "manyangled" at "https://dl.bintray.com/manyangled/maven/"
 
-libraryDependencies += "com.manyangled" %% "breakable" % "0.1.0"
+libraryDependencies += "com.manyangled" %% "breakable" % "0.1.1"
 ```
 
 ##### API Doc
