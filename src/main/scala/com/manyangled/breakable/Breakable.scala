@@ -24,7 +24,7 @@ import Breakable._
 class Breakable[A] private [breakable] (
     stream: () => Stream[Try[Any]],
     label: Label,
-    p: A => Boolean) {
+    p: A => Boolean) extends Serializable {
 
   private [breakable] def rawStream = stream()
 
@@ -110,9 +110,9 @@ class Breakable[A] private [breakable] (
 }
 
 object Breakable {
-  trait Label
+  trait Label extends Serializable
 
-  sealed trait Control extends Exception
+  sealed trait Control extends Exception with Serializable
   case class Break(label: Label) extends Control
   case class Continue(label: Label) extends Control
 

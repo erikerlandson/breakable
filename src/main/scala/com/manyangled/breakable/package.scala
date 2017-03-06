@@ -22,7 +22,7 @@ package object breakable {
   def break(lab: Label): Unit = { throw Break(lab) }
   def continue(lab: Label): Unit = { throw Continue(lab) }
 
-  implicit class ImplicitForBreakingFilter(b: => Boolean) {
+  implicit class ImplicitForBreakingFilter(b: => Boolean) extends Serializable {
     def break(lab: Label): Boolean = {
       if (b) throw Break(lab)
       true
@@ -33,7 +33,7 @@ package object breakable {
     }
   }
 
-  implicit class ImplicitForSequenceResults[A](bkb: Breakable[A]) {
+  implicit class ImplicitForSequenceResults[A](bkb: Breakable[A]) extends Serializable {
     def toStream: Stream[A] = bkb.rawStream.map(_.get).asInstanceOf[Stream[A]]
     def toIterator: Iterator[A] = toStream.iterator
     def toVector: Vector[A] = toStream.toVector
@@ -42,13 +42,14 @@ package object breakable {
   }
 
   // why you need ClassTag, toArray method?
-  implicit class ImplicitForArrayResults[A :scala.reflect.ClassTag](bkb: Breakable[A]) {
+  implicit class ImplicitForArrayResults[A :scala.reflect.ClassTag](bkb: Breakable[A])
+      extends Serializable {
     def toArray: Array[A] = bkb.toStream.toArray
   }
 
   def breakable[A](s: => Seq[A]): Breakable[(A, Label)] = Breakable(s)
 
-  implicit class ImplicitForBreakableMethod[A](s: => Seq[A]) {
+  implicit class ImplicitForBreakableMethod[A](s: => Seq[A]) extends Serializable {
     def breakable: Breakable[(A, Label)] = Breakable(s)
   }
 }
