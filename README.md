@@ -2,11 +2,11 @@
 A lightweight library for 'break' and 'continue' in Scala for-comprehensions
 
 ### Features
-1: Functional programming using `break` and `continue`
-1: Fully compatible with Scala's for-comprehensions, by virtue of its monadic design
-1: Results are represented as lazy computations, supporting logically infinite sequences
-1: `break` and `continue` operations take labels, allowing for easy control across multiple layers of nested looping
-1: Usable from inside for-comprehension loop bodies or with `if` clauses
+1. Functional programming using `break` and `continue`
+1. Fully compatible with Scala's for-comprehensions, by virtue of its monadic design
+1. Results are represented as lazy computations, supporting logically infinite sequences
+1. `break` and `continue` operations take labels, allowing for easy control across multiple layers of nested looping
+1. Usable from inside for-comprehension loop bodies or with `if` clauses
 
 ### Use `breakable` in your project
 [![Download](https://api.bintray.com/packages/manyangled/maven/breakable/images/download.svg?version=0.1.1) ](https://bintray.com/manyangled/maven/breakable/0.1.1/link)
