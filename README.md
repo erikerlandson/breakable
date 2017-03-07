@@ -1,6 +1,13 @@
 ## breakable
 A lightweight library for 'break' and 'continue' in Scala for-comprehensions
 
+### Features
+1: Functional programming using `break` and `continue`
+1: Fully compatible with Scala's for-comprehensions, by virtue of its monadic design
+1: Results are represented as lazy computations, supporting logically infinite sequences
+1: `break` and `continue` operations take labels, allowing for easy control across multiple layers of nested looping
+1: Usable from inside for-comprehension loop bodies or with `if` clauses
+
 ### Use `breakable` in your project
 [![Download](https://api.bintray.com/packages/manyangled/maven/breakable/images/download.svg?version=0.1.1) ](https://bintray.com/manyangled/maven/breakable/0.1.1/link)
 
@@ -79,4 +86,25 @@ res0: Vector[Int] = Vector(0, 2, 4, 6, 8, 10, 12, 14, 16, 18)
 
 scala> bkb3.toIterator.take(100000000).length
 res1: Int = 100000000
+```
+
+An example of 'foreach' mode (without yield). Computations using this mode are **not** lazy,
+since the semantics are to execute the loop body.
+```scala
+scala> import com.manyangled.breakable._
+import com.manyangled.breakable._
+
+scala> for {
+     |   (x, xLab) <- Stream.from(0).breakable
+     | } {
+     |   if (x % 2 == 1) continue(xLab)
+     |   if (x > 10) break(xLab)
+     |   println(s"x= $x")
+     | }
+x= 0
+x= 2
+x= 4
+x= 6
+x= 8
+x= 10
 ```
